@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./client
+    ports:
+      - "80:80"
+    networks:
+      - movie_app_network
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./server
+    ports:
+      - "3000:3000"
+    networks:
+      - movie_app_network
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - movie_app_network
+
+networks:
+  movie_app_network:
+    external: true
+
+volumes:
+  mongo_data:
