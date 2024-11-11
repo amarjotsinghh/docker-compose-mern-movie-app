@@ -1,7 +1,7 @@
 
 ---
 
-# Movies App
+# Movies App.
 
 ## Introduction
 
